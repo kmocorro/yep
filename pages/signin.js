@@ -79,7 +79,7 @@ export default function SignIn () {
 
             } else if(content.err){
 
-                console.log(content.error);
+                console.log(content.err);
 
             }
 
