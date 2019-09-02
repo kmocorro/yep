@@ -17,3 +17,11 @@ export default function Index() {
     </Fragment>
   );
 }
+
+Index.getInitialProps = async ({req, query}) => {
+
+  const cookie_ldap = req.headers.cookie;
+
+  console.log(cookie_ldap);
+
+}

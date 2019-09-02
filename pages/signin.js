@@ -71,7 +71,7 @@ export default function SignIn () {
     
                 const content = await res_submit.json();
     
-                console.log(content);
+                //console.log(content);
     
                 if(content.token){
     
