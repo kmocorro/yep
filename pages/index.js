@@ -21,19 +21,21 @@ export default function Index() {
   );
 }
 
-Index.getInitialProps = async ({req, query}) => {
+Index.getInitialProps = async ({res, query}) => {
 
-  if(loggedIn()){
-    return 
-    
-  } else {
+  if(!loggedIn()){
 
     let loadStatusPage = `/signin`;
     let asStatusPage = `/`;
     
-    setTimeout(() => {
-        Router.push(loadStatusPage, asStatusPage);
-    }, 300);
+    Router.push(loadStatusPage, asStatusPage);
+    return {}
+
+  } else {
+    
+    res.end()
+    return {}
+
   }
 
 }
