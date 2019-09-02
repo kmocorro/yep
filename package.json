@@ -13,8 +13,8 @@
     "react-dom": "latest"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "next -p $PORT",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p $PORT"
   }
 }
