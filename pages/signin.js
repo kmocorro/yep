@@ -22,7 +22,6 @@ export default function SignIn () {
     const handleOnSubmit = (e) =>{
         e.preventDefault();
         
-        /*
         const credentials = {username: username.value, password: password.value};
 
         return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials, {withCredentials: true})
@@ -47,20 +46,17 @@ export default function SignIn () {
             console.log(err);
         });
 
-        */
-
+        /*
         (async () => {
             const res_submit = await fetch(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
-                    //'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 body: JSON.stringify({
                     username: username.value,
                     password: password.value // we
-
                 })
             });
 
@@ -85,6 +81,8 @@ export default function SignIn () {
             }
 
         })();
+
+        */
     }
 
     return (
