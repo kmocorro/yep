@@ -21,17 +21,11 @@ export default function Index() {
   );
 }
 
-Index.getInitialProps = async ({res, query}) => {
+Index.getInitialProps = async ({req, query}) => {
+  
+  const cookieLdap = req.query.cookie['ldap'];
 
-  if(!loggedIn()){
-
-    res.redirect('/signin');
-
-  } else {
-
-    return {}
-
-  }
+  console.log(cookieLdap);
 
   return {}
 
