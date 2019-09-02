@@ -53,20 +53,15 @@ export default function SignIn () {
             const res_submit = await fetch(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/json',
-                    //'Content-Type': 'application/json'
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Accept': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json'
+                    //'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: {
-                    username: username.value,
-                    password: password.value
-                }
-                /*
                 body: JSON.stringify({
                     username: username.value,
                     password: password.value // we
 
-                })*/
+                })
             });
 
             const content = await res_submit.json();
