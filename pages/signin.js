@@ -8,14 +8,14 @@ export default function SignIn () {
     const password = useForm('');
 
     function useForm(init){
-        const [ values, setValues ] = useState(init);
+        const [ value, setValue ] = useState(init);
 
         function handleOnChange(e){
-            setValues(e.target.value);
+            setValue(e.target.value);
         }
 
         return {
-            values,
+            value,
             onChange: handleOnChange
         }
     }
