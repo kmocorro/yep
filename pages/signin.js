@@ -20,7 +20,7 @@ export default function SignIn () {
         }
     }
 
-    const handleOnSubmit = (e) =>{
+    function handleOnSubmit(e){
         e.preventDefault();
         
         const credentials = {username: username.value, password: password.value};
