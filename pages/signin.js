@@ -1,11 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import SignInForm from '../components/SignInForm';
-import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 export default function SignIn () {
 
     const username = useForm('');
     const password = useForm('');
+    const cookies = new Cookies();
 
     function useForm(init){
         const [ value, setValue ] = useState(init);
@@ -47,7 +48,7 @@ export default function SignIn () {
                 },
                 body: JSON.stringify({
                     username: username.value,
-                    password: password.value // we
+                    password: password.value 
                 })
             });
 
@@ -55,7 +56,9 @@ export default function SignIn () {
 
             console.log(content);
 
-            if(content.success){
+            if(content.token){
+
+                cookies.set('ldap', content.token, {path: '/'});
 
                 let loadStatusPage = `/`;
                 let asStatusPage = `/`;
