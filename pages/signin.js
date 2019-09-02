@@ -23,6 +23,7 @@ export default function SignIn () {
     function handleOnSubmit(e){
         e.preventDefault();
         
+        /*
         const credentials = {username: username.value, password: password.value};
 
         console.log(credentials);
@@ -35,7 +36,8 @@ export default function SignIn () {
             console.log(err);
         });
 
-        /*
+        */
+
         (async () => {
             const res_submit = await fetch(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, {
                 method: 'POST',
@@ -70,8 +72,6 @@ export default function SignIn () {
             }
 
         })();
-
-        */
     }
 
     return (
