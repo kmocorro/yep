@@ -54,7 +54,8 @@ export default function SignIn () {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    //'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 body: JSON.stringify({
                     username: username.value,
