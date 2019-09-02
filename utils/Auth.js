@@ -1,21 +1,24 @@
-import Cookies from 'universal-cookie';
+import { getCookies, setCookies, removeCookies } from 'cookies-next';
 import Router from 'next/router';
-
-const cookies = new Cookies();
 
 function getToken(){
     return cookies.get('ldap');
 }
 
 function isLoggedIn(){
-    const token = getToken();
+    const token = getCookies(ctx, 'ldap');
     return !!token;
 }
 
 function login(token){
-    cookies.set('ldap', token, {path: '/'});
+    setCookies(ctx, 'ldap', token, { expires : 1 });
     Router.push('/');
 }
 
+function logout(){
+    removeCookies(ctx, 'ldap');
+    Router.push('/signin')
+}
 
-export { getToken, isLoggedIn, login }
+
+export { getToken, isLoggedIn, login, logout }

@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react';
 import Layout from '../components/Layout';
 import SurveyCard from '../components/SurveyCard';
-import Cookies from 'universal-cookie';
-import Head from 'next/head';
 
+import Head from 'next/head';
 export default function Index() {
   return (
     <Fragment>

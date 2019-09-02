@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import SignInForm from '../components/SignInForm';
 import { getToken, isLoggedIn, login } from '../utils/Auth';
-import Router from 'next/router';
 
 export default function SignIn () {
 
@@ -72,10 +71,7 @@ export default function SignIn () {
     
             })();
 
-        } else {
-            Router.push('/');
         }
-
         
     }
 
