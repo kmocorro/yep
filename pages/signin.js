@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import SignInForm from '../components/SignInForm';
-import { getToken, loggedIn, setToken } from '../utils/Auth';
+import { getToken, isLoggedIn, login } from '../utils/Auth';
 import Router from 'next/router';
 
 export default function SignIn () {
@@ -40,7 +40,7 @@ export default function SignIn () {
 
         */
 
-        if(!loggedIn()){
+        if(!isLoggedIn()){
 
             (async () => {
                 const res_submit = await fetch(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, {
@@ -61,17 +61,9 @@ export default function SignIn () {
     
                 if(content.token){
     
-                    // set token
-                    setToken(content.token);
-    
-                    let loadStatusPage = `/`;
-                    let asStatusPage = `/`;
+                    // set token and then login router push to index.
+                    login(content.token);
                     
-                    setTimeout(() => {
-                        Router.push(loadStatusPage, asStatusPage);
-                    }, 600);
-                    
-    
                 } else if(content.err){
     
                     setLoginResponse(content.err);
@@ -81,8 +73,7 @@ export default function SignIn () {
             })();
 
         } else {
-            console.log('Already signed in.');
-            console.log(getToken());
+            Router.push('/');
         }
 
         
