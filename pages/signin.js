@@ -27,21 +27,7 @@ export default function SignIn () {
 
         return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials, {withCredentials: true})
         .then(res => {
-            if(res.status >= 200 && res.status < 300 ){
-                let token = res.data.token // api/login return object {token: e...}
-                
-                if(token){
-
-                    setToken(token);
-                    
-                    location.reload();
-                } else {
-                    
-                    setLoginResponse('Invalid username/password')
-
-                }
-
-            }
+            consolee.log(res);
         })
         .catch(err => {
             console.log(err);
