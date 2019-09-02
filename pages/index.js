@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Layout from '../components/Layout';
 import SurveyCard from '../components/SurveyCard';
-import Router from 'next/router';
+import Cookies from 'universal-cookie';
 
 import Head from 'next/head';
 
@@ -23,8 +23,10 @@ export default function Index() {
 
 Index.getInitialProps = async ({req, query}) => {
   
-  const cookieLdap = req.headers.cookie['ldap'];
+  const cookieLdap = req.headers.cookie;
+  const cookies = new Cookies();
 
+  console.log(cookies.get('ldap'));
   console.log(cookieLdap);
 
   return {}
