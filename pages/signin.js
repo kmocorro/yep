@@ -58,7 +58,8 @@ export default function SignIn () {
                 },
                 body: JSON.stringify({
                     username: username.value,
-                    password: password.value
+                    password: password.value // we
+                    
                 })
             });
 
