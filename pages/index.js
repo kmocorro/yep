@@ -25,17 +25,14 @@ Index.getInitialProps = async ({res, query}) => {
 
   if(!loggedIn()){
 
-    let loadStatusPage = `/signin`;
-    let asStatusPage = `/`;
-    
-    Router.push(loadStatusPage, asStatusPage);
-    return {}
+    res.redirect('/signin');
 
   } else {
-    
-    res.end()
+
     return {}
 
   }
+
+  return {}
 
 }
