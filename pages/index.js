@@ -20,7 +20,7 @@ export default function Index() {
 
 Index.getInitialProps = async ({req, query}) => {
 
-  const cookie_ldap = req.headers.cookie;
+  const cookie_ldap = req.headers;
 
   console.log(cookie_ldap);
 
