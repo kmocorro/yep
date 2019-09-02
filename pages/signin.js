@@ -27,7 +27,7 @@ export default function SignIn () {
 
         return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials, {withCredentials: true})
         .then(res => {
-            consolee.log(res);
+            console.log(res);
         })
         .catch(err => {
             console.log(err);
