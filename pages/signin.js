@@ -25,6 +25,8 @@ export default function SignIn () {
         
         const credentials = {username: username.value, password: password.value};
 
+        console.log(credentials);
+
         return axios.post(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, credentials, {withCredentials: true})
         .then(res => {
             console.log(res);
