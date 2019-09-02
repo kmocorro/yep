@@ -57,11 +57,16 @@ export default function SignIn () {
                     //'Content-Type': 'application/json'
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
+                body: {
+                    username: username.value,
+                    password: password.value
+                }
+                /*
                 body: JSON.stringify({
                     username: username.value,
                     password: password.value // we
 
-                })
+                })*/
             });
 
             const content = await res_submit.json();
