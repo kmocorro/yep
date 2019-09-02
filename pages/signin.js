@@ -7,6 +7,7 @@ export default function SignIn () {
 
     const username = useForm('');
     const password = useForm('');
+    const [ loginResponse, setLoginResponse ] = useState('');
     const cookies = new Cookies();
 
     function useForm(init){
@@ -20,6 +21,19 @@ export default function SignIn () {
             value,
             onChange: handleOnChange
         }
+    }
+
+    function getToken(){
+        return cookies.get('ldap');
+    }
+
+    function loggedIn(){
+        const token = getToken();
+        return !!token;
+    }
+    
+    function setToken(token){
+        cookies.set('ldap', token, {path: '/'});
     }
 
     function handleOnSubmit(e){
@@ -40,47 +54,57 @@ export default function SignIn () {
 
         */
 
-        (async () => {
-            const res_submit = await fetch(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: username.value,
-                    password: password.value 
-                })
-            });
+        if(!loggedIn()){
 
-            const content = await res_submit.json();
+            (async () => {
+                const res_submit = await fetch(`http://dev-metaspf401.sunpowercorp.com:8080/api/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username.value,
+                        password: password.value 
+                    })
+                });
+    
+                const content = await res_submit.json();
+    
+                console.log(content);
+    
+                if(content.token){
+    
+                    // set token
+                    setToken(content.token);
+    
+                    let loadStatusPage = `/`;
+                    let asStatusPage = `/`;
+                    
+                    setTimeout(() => {
+                        Router.push(loadStatusPage, asStatusPage);
+                    }, 600);
+                    
+    
+                } else if(content.err){
+    
+                    setLoginResponse(content.err);
+    
+                }
+    
+            })();
 
-            console.log(content);
+        } else {
+            console.log('Already signed in.');
+            console.log(getToken());
+        }
 
-            if(content.token){
-
-                cookies.set('ldap', content.token, {path: '/'});
-
-                let loadStatusPage = `/`;
-                let asStatusPage = `/`;
-                
-                setTimeout(() => {
-                    Router.push(loadStatusPage, asStatusPage);
-                }, 600);
-                
-
-            } else if(content.err){
-
-                console.log(content.err);
-
-            }
-
-        })();
+        
     }
 
     return (
         <Fragment>
-            <SignInForm username={username} password={password} handleOnSubmit={handleOnSubmit} />
+            <SignInForm username={username} password={password} handleOnSubmit={handleOnSubmit} loginResponse={loginResponse}/>
         </Fragment>
     )
 }

@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignInForm({ username, password, handleOnSubmit }) {
+export default function SignInForm({ username, password, handleOnSubmit, loginResponse}) {
   const classes = useStyles();
 
   return (
@@ -114,6 +114,13 @@ export default function SignInForm({ username, password, handleOnSubmit }) {
                 <Link href="#" variant="body2">
                   Error Sign in? 
                 </Link>
+              </Grid>
+            </Grid>
+            <Grid container>
+              <Grid item lg="12">
+                <Typography color="error">
+                  {loginResponse}
+                </Typography>
               </Grid>
             </Grid>
             <Box mt={5}>
