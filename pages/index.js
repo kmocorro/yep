@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react';
 import Layout from '../components/Layout';
 import SurveyCard from '../components/SurveyCard';
+import Router from 'next/router';
 
 import Head from 'next/head';
+
+import { loggedIn } from '../utils/Auth';
 
 export default function Index() {
   return (
@@ -20,12 +23,17 @@ export default function Index() {
 
 Index.getInitialProps = async ({req, query}) => {
 
-  const cookie_ldap = req.headers.cookie;
+  if(loggedIn()){
+    return 
+    
+  } else {
 
-  console.log(cookie_ldap);
-
-  return {
-    cookie_ldap
+    let loadStatusPage = `/signin`;
+    let asStatusPage = `/`;
+    
+    setTimeout(() => {
+        Router.push(loadStatusPage, asStatusPage);
+    }, 300);
   }
 
 }

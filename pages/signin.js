@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import SignInForm from '../components/SignInForm';
-import Cookies from 'universal-cookie';
+import { getToken, loggedIn, setToken } from '../utils/Auth';
 import Router from 'next/router';
 
 export default function SignIn () {
@@ -8,7 +8,6 @@ export default function SignIn () {
     const username = useForm('');
     const password = useForm('');
     const [ loginResponse, setLoginResponse ] = useState('');
-    const cookies = new Cookies();
 
     function useForm(init){
         const [ value, setValue ] = useState(init);
@@ -21,19 +20,6 @@ export default function SignIn () {
             value,
             onChange: handleOnChange
         }
-    }
-
-    function getToken(){
-        return cookies.get('ldap');
-    }
-
-    function loggedIn(){
-        const token = getToken();
-        return !!token;
-    }
-    
-    function setToken(token){
-        cookies.set('ldap', token, {path: '/'});
     }
 
     function handleOnSubmit(e){
