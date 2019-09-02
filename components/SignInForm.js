@@ -117,7 +117,7 @@ export default function SignInForm({ username, password, handleOnSubmit, loginRe
               </Grid>
             </Grid>
             <Grid container>
-              <Grid item lg="12">
+              <Grid item lg={12}>
                 <Typography color="error">
                   {loginResponse}
                 </Typography>
