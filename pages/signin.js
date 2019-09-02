@@ -59,7 +59,7 @@ export default function SignIn () {
                 body: JSON.stringify({
                     username: username.value,
                     password: password.value // we
-                    
+
                 })
             });
 
@@ -77,7 +77,7 @@ export default function SignIn () {
                 }, 600);
                 
 
-            } else if(content.error){
+            } else if(content.err){
 
                 console.log(content.error);
 
